@@ -1,5 +1,7 @@
 local common = require("mer.ashfall.common.common")
 local logger = require("logging.logger")
+local config = require("teaMerchants.mcm").config
+local log = logger.new { name = "teaMerchants.addTea", logLevel = config.logLevel }
 local thirstController = require("mer.ashfall.needs.thirstController")
 local teaConfig = common.staticConfigs.teaConfig
 -- First time entering a cell, add tea to random Tea Merchants' liquidContainers
