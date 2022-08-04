@@ -6,10 +6,20 @@ local configPath = "teaMerchants"
 this.config = mwse.loadConfig(configPath) or {
 	logLevel = "INFO",
 	teaMerchants = {
-		["ajira"] = true, -- balmora, black anther/comberry/heather, in inventory
-		["arrille"] = true, -- seyda neen, leveled lists, not in inventory
-		["pierlette rostorard"] = true, -- sadrith mora, chokeweed/comberry/gold kanet, not in inventory
-		["sedam omalen"] = true, -- ald velothi, leveled lists, not in inventory
+		-- manually picked merchants that have teaTypes available
+		["anarenen"] = true, -- Ald'ruhn, heather/comberry
+		["andil"] = true, -- Tel Vos, black anther/gold kanet/stoneflower/kresh fiber/scathecraw
+		["andilu drothan"] = true, -- Vivec Foreign Quarter, trama root/gold kanet/comberry/heather
+		["anis seloth"] = true, -- Sadrith Mora, coda flower/hackle-lo/trama root/heather
+		["ajira"] = true, -- Balmora, black anther/comberry/heather
+		["aurane frernis"] = true, -- Vivec Foreign Quarter, black anther/coda flower
+		["bildren areleth"] = true, -- Tel Aruhn, bittergreen/stoneflower/kresh fiber/heather
+		["cocistian quaspus"] = true, -- Buckmoth, scathecraw/fire petal/bittergreen/kresh fiber/stoneflower
+		["danoso andrano"] = true, -- Ald'ruhn, roobrush/coda flower
+		["daynali dren"] = true, -- Tel Mora, black anther/gold kanet/hackle-lo/trama root
+		["felara andrethi"] = true, -- Tel Aruhn, chokeweed/comberry
+		["galuro belan"] = true, --	Vivec Telvanni Canton, fire petal/stonflower/scathecraw/kresh fiber
+		["irna maryon"] = true, -- 	Tel Aruhn, roobrush/scathecraw/fire petal
 	},
 }
 
@@ -17,6 +27,8 @@ local function modConfigReady()
 	local template = mwse.mcm.createTemplate { name = "Tea Merchants", headerImagePath = "textures/jsmk/MCMHeader.tga" }
 	template:saveOnClose(configPath, this.config)
 	template:register()
+
+	-- INFO PAGE
 	local infoPage = template:createPage{ label = "Info" }
 	infoPage:createInfo({ text = this.mod .. " v" .. this.version .. "\n" .. summary })
 	infoPage:createHyperLink{
@@ -38,6 +50,8 @@ local function modConfigReady()
 		},
 		variable = mwse.mcm.createTableVariable { id = "logLevel", table = this.config },
 	}
+
+	-- TEA MERCHANT LIST
 	template:createExclusionsPage{
 		label = "Tea Merchants List",
 		description = "Move merchants into the left list to allow them to offer Hot Tea services.",
