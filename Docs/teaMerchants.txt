@@ -1,11 +1,18 @@
-﻿﻿﻿Tea Merchants - an addon for Ashfall
+﻿﻿Tea Merchants - an addon for Ashfall
 
-Suffering from Dysentery, Flu, or Food Poisoning? They can be treated by having tea. Yes, you heard it right, Tea Merchants offer tea that can help cure Ashfall diseases that the Temple and Imperial Cult cannot. ﻿This mod adds ten Tea Merchants in the wilderness across Vvardenfell. Gather ingredients for some of the Tea Merchants and enjoy an exclusive discount. A Guide to Tea Merchants, which can help you locate nine out of ten Tea Merchants, can be found next to Vincea Dervayn, who camps outside the Shulk Egg Mine, south of Balmora. 
+Suffering from Dysentery, Flu, or Food Poisoning? They can be treated by having tea. Yes, you heard it right, Tea Merchants offer tea that can help cure Ashfall diseases that the Temple and Imperial Cult cannot. ﻿This mod adds ten Tea Merchants in the wilderness across Vvardenfell. Gather ingredients for some of the Tea Merchants and enjoy an exclusive discount. A Guide to Tea Merchants, which can help you locate nine out of ten Tea Merchants, and a Tea Merchants' Bottle weapon can be found next to Vincea Dervayn, who camps outside the Shulk Egg Mine, south of Balmora. 
 
+UPDATE 1.1 (You MUST CLEAN YOUR SAVES if you update this mod mid-playthrough)
+
+- Surprise Me option now offers modded teas. 
+- Added Khajiit-speak lines even though there's no Khajiit Tea Merchant added by this mod. 
+- Removed the enableThirst check and the hydration check
+- Fixed the logger. Now log level wil update without restarting the game. Thanks Merlord for his code!!!
+- Swapped out the Dwemer Dai-Katanas for Tea Merchants' Bottles. There's now only one Dwemer Dai-Katana and one Orcish Dai-Katana added by this mod. 
 
 Tea Merchant Mechanics
 
-To buy a bottle of tea, talk to anyone whose class is "Tea Merchant" or anyone who is on the Tea Merchant List in the Mod Config Menu. Tea Merchant offers different types of tea based on what ingredients they have in their inventory, so you can give them the ingredient for specific types of tea you want. Most of them restock Comberry (for Cure Flu), Kresh Fiber (for Cure Food Poisoning), and Roobrush (for Cure Dysentery). There is also a Surprise Me option that is randomly picked from all default tea types. 
+To buy a bottle of tea, talk to anyone whose class is "Tea Merchant" or anyone who is on the Tea Merchant List in the Mod Config Menu. Tea Merchant offers different types of tea based on what ingredients they have in their inventory, so you can give them the ingredient for specific types of tea you want. Most of them restock Comberry (for Cure Flu), Kresh Fiber (for Cure Food Poisoning), and Roobrush (for Cure Dysentery). There is also a Surprise Me option that is randomly picked from all tea types. 
 
 ﻿Friends and Foes﻿ NPCs. Tea Merchants have been added to the traveling traders leveled lists. So if you want more Tea Merchants offer tea at more places, please install Wares and F&F. AND YOU MUST MERGE YOUR LEVELED LISTS.
 
@@ -16,7 +23,7 @@ Tea Merchants charge 25-35 drakes for each bottle, determined by your dispositio
 
 Installation
 
-Extract everything to your data files folder and tick the Tea Merchants.esp in the launcher, or install with Mod Organizer 2 (recommended). Make sure you install Ashfall as well. This is an Ashfall addon and it requires the latest version of MWSE. Run the MWSE-update just in case. Also you ABSOLUTELY MUST use TES3Merge﻿ to merge your levelled lists and objects. 
+Install with Mod Organizer 2 (recommended) or Wrye Mash. Make sure you install Ashfall as well. This is an Ashfall addon and it requires the latest version of MWSE. Run the MWSE-update just in case. Also you ABSOLUTELY MUST use TES3Merge﻿ to merge your levelled lists and objects. 
 
 Known Issue
 
@@ -25,14 +32,14 @@ Ingredients owned by Tea Merchants but not in their inventory are not showing up
 Compatibility
 
 This mod is NOT compatible with OpenMW. 
-This mod is compatible with mods that add new types of tea to Ashfall, like Caius' Rooftop Renovations﻿ (if you give a Tea Merchant some Blue Kanet, a Blue Kanet Tea option will show up in tea select menu.) However, for now, the Surprise Me option only offers Ashfall default types of tea.
+This mod is compatible with mods that add new types of tea to Ashfall, like Caius' Rooftop Renovations﻿ (if you give a Tea Merchant some Blue Kanet, a Blue Kanet Tea option will show up in tea select menu.)
 This mod adds NPCs in the wilderness. So it is compatible with most of the city overhaul mods like Beautiful Cities of Morrowind. There are no landscape and pathgrid edits. 
 
 Credits and Thanks
 
-Merlord, for Ashfall and DRIP. 
+Merlord, for Ashfall and everything. 
 Anroha, for the Dwemer Dai-Katana and Orcish Dai-Katana from Weapons Expansion Project.
-Danae, for the Friends and Foes script, and Morrowind Modding Tutorials. 
+Danae, for Friends and Foes, and Morrowind Modding Tutorials. 
 Endoran, for the beautiful model of a Guide to Tea Merchants from Tarhiel's Journal.
 Members of the Discord server Morrowind Modding Community, for all the help.
 MWSE Team, for MWSE-Lua. 

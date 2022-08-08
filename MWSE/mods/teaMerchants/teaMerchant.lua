@@ -1,27 +1,19 @@
 local this = {}
 local common = require("mer.ashfall.common.common")
-local config = require("teaMerchants.mcm").config
-local logger = require("logging.logger")
-local log = logger.new { name = "teaMerchants.teaMerchants", logLevel = config.logLevel }
+local config = require("teaMerchants.config").config
+local logger = require("teaMerchants.logging").createLogger("teaMerchant")
 local merchantMenu = require("mer.ashfall.merchants.merchantMenu")
 local teaConfig = common.staticConfigs.teaConfig
-local interop = require("mer.ashfall.interop")
 local validTeas = require("teaMerchants.validTeas")
-
-interop.registerWaterContainers({
-	jsmk_Misc_Com_Bottle = { capacity = 90, weight = 3, value = 4, holdsStew = false },
-	includeOverrides = false,
-})
 
 this.guids = { MenuDialog_TeaService = tes3ui.registerID("MenuDialog_service_TeaService") }
 
-local function isTeaMerchants(reference)
+local function isTeaMerchant(reference)
 	local obj = reference.baseObject or reference.object
 	local objId = obj.id:lower()
 	local classId = obj.class and reference.object.class.id:lower()
-	log:debug("%s is a %s.", objId, classId)
+	logger:debug("%s is a %s.", objId, classId)
 	return (classId == "tea merchant") or config.teaMerchants[objId]
-	-- return config.teaMerchants[objId]
 end
 
 local teaBaseCost = 25
@@ -45,32 +37,31 @@ local function getTeaMenuText(merchantObj)
 	local cost = getTeaCost(merchantObj)
 	return string.format("Hot Tea (%d gold)", cost)
 end
-local function fill()
 
+local function fill(merchant, teaType, bottle)
+	local cost = getTeaCost(merchant.object)
+	tes3.removeItem({ reference = tes3.player, item = "Gold_001", count = cost })
+	tes3.addItem({ reference = merchant.reference, item = "Gold_001", count = cost })
+	tes3.addItem({ reference = tes3.player, item = bottle, count = 1 })
+	local itemData
+	itemData = tes3.addItemData { to = tes3.player, item = bottle }
+	itemData.data.waterAmount = 90
+	itemData.data.waterType = teaType
+	itemData.data.teaProgress = 100
+	itemData.data.waterHeat = 100
+	common.helper.fadeTimeOut(0.25, 2, function()
+	end) -- 15 min has been passed 
+	tes3.messageBox("A %s filled with %s has been added to your inventory.", tes3.getObject(bottle).name,
+	                teaConfig.teaTypes[teaType].teaName)
 end
 
 local function teaSelectMenu()
-	local menuDialog = merchantMenu.getDialogMenu()
-	local merchant = menuDialog:getPropertyObject("PartHyperText_actor")
-	local menuMessage = "Select a type of tea"
+	local merchant = merchantMenu.getDialogMenu():getPropertyObject("PartHyperText_actor")
 	local buttons = {}
-	local surpriseMe = table.choice(validTeas)
 	table.insert(buttons, {
 		text = string.format("Surprise Me"),
 		callback = function()
-			local cost = getTeaCost(merchant.object)
-			tes3.removeItem({ reference = tes3.player, item = "Gold_001", count = cost })
-			tes3.addItem({ reference = merchant.reference, item = "Gold_001", count = cost })
-			event.trigger("Ashfall:Drink", { waterType = surpriseMe, amount = 100 })
-			event.trigger("Ashfall:DrinkTea", { teaType = surpriseMe, amountDrank = 100, heat = 100 })
-			tes3.addItem({ reference = tes3.player, item = "jsmk_Misc_Com_Bottle", count = 1 })
-			local itemData
-			itemData = tes3.addItemData { to = tes3.player, item = "jsmk_Misc_Com_Bottle" }
-			itemData.data.waterAmount = 90
-			itemData.data.waterType = surpriseMe
-			itemData.data.teaProgress = 100
-			itemData.data.waterHeat = 100
-			tes3.messageBox("A bottle of tea has been added to your inventory.")
+			fill(merchant, table.choice(validTeas), "jsmk_Misc_Com_Bottle")
 		end,
 		tooltip = {
 			header = string.format("Surprise Me"),
@@ -78,48 +69,26 @@ local function teaSelectMenu()
 		},
 	})
 	for teaType, teaData in pairs(teaConfig.teaTypes) do
-		local teaTypeAvailable = tes3.getItemCount({ item = teaType, reference = merchant.reference }) ~= 0
-		if teaTypeAvailable then
+		if tes3.getItemCount({ item = teaType, reference = merchant.reference }) ~= 0 then
 			table.insert(buttons, {
 				text = string.format("%s", teaData.teaName),
 				callback = function()
-					local cost = getTeaCost(merchant.object)
-					tes3.removeItem({ reference = tes3.player, item = "Gold_001", count = cost })
-					tes3.addItem({ reference = merchant.reference, item = "Gold_001", count = cost })
+					fill(merchant, teaType, "jsmk_Misc_Com_Bottle")
 					tes3.removeItem({ reference = merchant.reference, item = teaType, count = 1 })
-					event.trigger("Ashfall:Drink", { waterType = teaType, amount = 100 })
-					event.trigger("Ashfall:DrinkTea", { teaType = teaType, amountDrank = 100, heat = 100 })
-					tes3.addItem({ reference = tes3.player, item = "jsmk_Misc_Com_Bottle", count = 1 })
-					local itemData
-					itemData = tes3.addItemData { to = tes3.player, item = "jsmk_Misc_Com_Bottle" }
-					itemData.data.waterAmount = 90
-					itemData.data.waterType = teaType
-					itemData.data.teaProgress = 100
-					itemData.data.waterHeat = 100
-					tes3.messageBox("A bottle of %s has been added to your inventory.", teaData.teaName)
 				end,
 				tooltip = { header = string.format("%s", teaData.teaName), text = teaData.teaDescription },
 			})
 		end
 	end
-	tes3ui.showMessageMenu({ message = menuMessage, buttons = buttons, cancels = true })
+	tes3ui.showMessageMenu({ message = "Select a type of tea", buttons = buttons, cancels = true })
 end
 local function onTeaServiceClick()
 	teaSelectMenu()
 end
-local function isHydrated()
-	local thirst = common.staticConfigs.conditionConfig.thirst:getValue()
-	if thirst < 0.1 then
-		return true
-	end
-	return false
-end
+
 local function getDisabled(cost)
 	-- check player can afford
 	if tes3.getPlayerGold() < cost then
-		return true
-	end
-	if isHydrated() then
 		return true
 	end
 	return false
@@ -134,11 +103,7 @@ local function makeTooltip()
 	local tooltip = tes3ui.createTooltipMenu()
 	local labelText = "Purchase a bottle of tea. "
 	if getDisabled(cost) then
-		if isHydrated() then
-			labelText = "You are fully hydrated."
-		else
-			labelText = "You do not have enough gold."
-		end
+		labelText = "You do not have enough gold."
 	end
 	local tooltipText = tooltip:createLabel{ text = labelText }
 	tooltipText.wrapText = true
@@ -171,15 +136,12 @@ local function createTeaButton(menuDialog)
 	menuDialog:registerAfter("update", updateTeaServiceButton)
 end
 local function onMenuDialogActivated()
-	if require("mer.ashfall.config").config.enableThirst ~= true then
-		return
-	end
 	local menuDialog = merchantMenu.getDialogMenu()
 	-- Get the actor that we're talking with.
 	local mobileActor = menuDialog:getPropertyObject("PartHyperText_actor")
 	local ref = mobileActor.reference
-	if isTeaMerchants(ref) then
-		log:debug("Adding Hot Tea Service")
+	if isTeaMerchant(ref) then
+		logger:debug("Adding Hot Tea Service")
 		-- Create our new button.
 		createTeaButton(menuDialog)
 	end

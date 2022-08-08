@@ -1,7 +1,3 @@
-local common = require("mer.ashfall.common.common")
-local logger = require("logging.logger")
-local config = require("teaMerchants.mcm").config
-local log = logger.new { name = "teaMerchants.addTea", logLevel = config.logLevel }
 local thirstController = require("mer.ashfall.needs.thirstController")
 local validTeas = require("teaMerchants.validTeas")
 
