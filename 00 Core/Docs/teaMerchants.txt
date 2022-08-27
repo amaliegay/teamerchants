@@ -1,0 +1,71 @@
+﻿﻿Tea Merchants - an addon for Ashfall
+
+Suffering from Dysentery, Flu, or Food Poisoning? They can be treated by having tea (Disclaimer: this mod does not add tea). Yes, you heard it right, Tea Merchants offer tea that can help cure Ashfall diseases that the Temple and Imperial Cult cannot. ﻿This mod adds ten Tea Merchants in the wilderness across Vvardenfell. Gather ingredients for some of the Tea Merchants and enjoy an exclusive discount. A Guide to Tea Merchants, which can help you locate nine out of ten Tea Merchants, and a Tea Merchants' Bottle weapon can be found next to Vincea Dervayn, who camps outside the Shulk Egg Mine, south of Balmora. 
+
+UPDATE 1.3
+
+- I changed the file path so if you are updating the mod, UNINSTALL FIRST. If you are using manual method, just delete the folder /MWSE/mods/teaMerchants. Do not install the update on top of the old one. 
+- Fixed the issue that Tea Merchant's Bottle does not have correct weight and price. Thanks qjm for the bug report!
+- Added pathgrid to cell (-4,-4). Hopefully Vincea Dervayn won't walk into the firepit too often. 
+- Hopefully fixed the Tea Bottle model so it doesn't float. 
+- Fixed a bug where addTea.lua doesn't work as attended
+- Update this from 1.2 should be safe. 
+
+Tea Merchant Mechanics
+
+To buy a bottle of tea, talk to anyone whose class is "Tea Merchant" or anyone who is on the Tea Merchant List in the Mod Config Menu. Tea Merchant offers different types of tea based on what ingredients they have in their inventory, so you can give them the ingredient for specific types of tea you want. Most of them restock Comberry (for Cure Flu), Kresh Fiber (for Cure Food Poisoning), and Roobrush (for Cure Dysentery). There is also a Surprise Me option that is randomly picked from all tea types. 
+
+Wares﻿-aware (if you are using the F&F plugin replacer)
+All the Tea Merchants have been waresified. I added aa_trader_ingred00 and aa_trader_foods to the merchants' inventory. 
+Tea Merchants have been added to the traveling traders leveled lists. So if you want more Tea Merchants offer tea at more places, please install Wares and F&F. AND YOU MUST MERGE YOUR LEVELED LISTS.
+
+
+Minor Quests for Discounts
+
+Tea Merchants charge 25-35 drakes for each bottle, determined by your disposition and personality. But you can do either the Gather Golden Sedge quest or the Gather Scathecraw quest to have an exclusive lifetime discount!
+
+Installation
+
+Install with Mod Organizer 2 or Wrye Mash (recommended). Manual install is not recommended. If you don't have F&F installed, only install 00 Core. If you have F&F, install both 00 Core and 01 F&F. Make sure you install Ashfall as well. This is an Ashfall addon and it requires the latest version of MWSE. Run the MWSE-update just in case. Also you ABSOLUTELY MUST use TES3Merge﻿ to merge your levelled lists and objects. 
+
+Known Issue
+
+Ingredients owned by Tea Merchants but not in their inventory are not showing up at the tea select menu. 
+Under certain circumstances, the Hot Tea button is greyed out despite the fact that the player has enough gold. The button is still perfectly functional though. 
+
+Compatibility
+
+This mod is NOT compatible with OpenMW. 
+This mod is compatible with mods that add new types of tea to Ashfall, like Caius' Rooftop Renovations﻿ (if you give a Tea Merchant some Blue Kanet, a Blue Kanet Tea option will show up in tea select menu.)
+This mod adds NPCs in the wilderness. So it is compatible with most of the city overhaul mods like Beautiful Cities of Morrowind. There are no landscape edits. 
+
+Credits and Thanks
+
+Merlord, for Ashfall and everything. 
+Anroha, for the Dwemer Dai-Katana and Orcish Dai-Katana from Weapons Expansion Project.
+Danae, for Wares and Friends and Foes, and Morrowind Modding Tutorials. 
+Endoran, for the beautiful model of a Guide to Tea Merchants from Tarhiel's Journal.
+TES3 Community, for Weapon Sheathing. 
+Members of the Discord server Morrowind Modding Community, for all the help.
+Thanks the bug reporters: Merlord, SpotheCat, inpv, SkinnyTalls99, and qjm. 
+MWSE Team, for MWSE-Lua. 
+
+Recommended Mods
+
+Sophisticated Save System - I am a new modder, so it's for your own good. 
+AntiTodding - Again, I am a new modder, so if you want to help me improve the mod, please contact me (when it happened, what did you do, and attach MWSE.log) if you receive error messages that say something something teaMerchants or jsmk. 
+Guarno Coffee - It's technically a type of tea that the Tea Merchants can brew.
+
+Usage
+
+All of the scripts are based on mods from modders like Merlord, Necrolesian, Safebox, and many others. All of the assets are made by other authors as well. Even this mod page is based on other modders'. So do what you want with the mod but if you reupload it, please credit me. 
+
+Contact
+
+Bug Report goes to Bug Reports page. Comment page is for the 'Good work!' messages. Please report incompatibility information as well. If it is not in the Compatibility section, I probably don't know about it. Contact me here on Nexus or @JosephMcKean on Discord server Morrowind Modding Community.
+
+technical details SEO: 
+
+Cell Edits: Ascadian Isles Region, -4, -4; Ashlands Region, -3, 18; Ashlands Regions, -4, 12; Azura's Coast Region, -4, 12;  Azura's Coast Region, 17, -1; Azura's Coast Region, 9, -10; Bitter Coast Region, -1, -11; Grazelands Region, 10, 11; Molag Mar Region, 7, -3; Sheogorad, 6, 22; West Gash Region, -7, 14.
+Pathgrid Edit: Ascadian Isles Region, -4, -4
+Topic Edits: Background, golden sedge, moon sugar, scathecraw. 
