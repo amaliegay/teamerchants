@@ -56,11 +56,12 @@ local function modConfigReady()
 		-- TEA MERCHANT LIST
 		local function createMerchantList()
 			local merchants = {}
-			---@param obj tes3npc
-			for obj in tes3.iterateObjects(tes3.objectType.npc) do
+			---@param npc tes3object
+			for npc in tes3.iterateObjects(tes3.objectType.npc) do
+				---@cast npc tes3npc
 				-- Check if npc trades in ingredients
-				if obj:tradesItemType(tes3.objectType.ingredient) then
-					merchants[#merchants + 1] = obj.id:lower()
+				if npc:tradesItemType(tes3.objectType.ingredient) then
+					merchants[#merchants + 1] = npc.id:lower()
 				end
 			end
 			table.sort(merchants)
