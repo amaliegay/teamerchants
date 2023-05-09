@@ -1,0 +1,21 @@
+[package]
+name = "Tea Merchants"
+authors = ["JosephMcKean"]
+version = "1.4.1"
+
+[dependencies]
+assets = [
+    "Tea Merchants.esp",
+    "Icons\\jsmk",
+    "Meshes\\jsmk",
+    "Textures\\jsmk",
+    "MWSE\\mods\\JosephMcKean\\teaMerchants",
+]
+
+[dependencies.mwse]
+buildnumber = 3210
+
+[dependencies.mods."Ashfall"]
+mwse-module = "mer.ashfall"
+version = "^3.9.6"
+url = "https://www.nexusmods.com/morrowind/mods/49057"
